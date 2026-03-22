@@ -1,7 +1,7 @@
 
 
 ## ER図
-![ER図の画像](furima.png)
+![ER図の画像](furima_2.png)
 
 
 ## users テーブル
@@ -18,7 +18,6 @@
 
 ### Association
 has_many :items
-has_many :comments
 has_many :orders
 
 
@@ -38,20 +37,8 @@ has_many :orders
 
 ### Association
 belongs_to :user
-has_many :comments
 has_one :order
 
-
-## comments テーブル
-|Column |Type         |Options     |
-|-------|-------------|------------|
-| text	| text	      | null: false|
-| user	| references	| null: false, foreign_key: true|
-| item	| references	| null: false, foreign_key: true|
-
-### Association
-belongs_to :user
-belongs_to :item
 
 
 ## orders テーブル
@@ -73,7 +60,7 @@ has_one :address
 | postal_code	  | string	    | null: false|
 | prefecture_id	| integer	    | null: false|
 | city	        | string	    | null: false|
-| addresses	    | string	    | null: false|
+| house_number  | string	    | null: false|
 | building	    | string	    | |
 | phone_number	| string	    | null: false|
 | order	        | references	| null: false, foreign_key: true|
