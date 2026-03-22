@@ -5,7 +5,8 @@
 
 
 ## users テーブル
-|Column---------------|Type-----|Options-----|
+|Column               |Type     |Options     |
+|---------------------|---------|------------|
 | nickname	          | string  |	null: false|
 | email	              | string	| null: false, unique: true|
 | encrypted_password	| string	| null: false|
@@ -23,7 +24,8 @@ has_many :orders
 
 
 ## items テーブル
-|Column-----------------------|Type---------|Options-----|
+|Column                       |Type         |Options     |
+|-----------------------------|-------------|------------|
 | item_name	                  | string	    | null: false|
 | item_info	                  | text	      | null: false|
 | item_category_id	          | integer	    | null: false|
@@ -41,7 +43,8 @@ has_one :order
 
 
 ## comments テーブル
-|Column-|Type---------|Options-----|
+|Column |Type         |Options     |
+|-------|-------------|------------|
 | text	| text	      | null: false|
 | user	| references	| null: false, foreign_key: true|
 | item	| references	| null: false, foreign_key: true|
@@ -52,7 +55,8 @@ belongs_to :item
 
 
 ## orders テーブル
-|Column-|Type---------|Options-----|
+|Column |Type         |Options     |
+|-------|-------------|------------|
 | user	| references	| null: false, foreign_key: true|
 |item 	| references	| null: false, foreign_key: true|
 
@@ -64,7 +68,8 @@ has_one :address
 
 
 ## addresses テーブル
-|Column-|Type---------|Options-----|
+|Column         |Type         |Options     |
+|---------------|-------------|------------|
 | postal_code	  | string	    | null: false|
 | prefecture_id	| integer	    | null: false|
 | city	        | string	    | null: false|
