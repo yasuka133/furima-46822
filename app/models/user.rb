@@ -12,7 +12,7 @@ class User < ApplicationRecord
   validates_format_of :password, with: PASSWORD_REGEX, message: 'には英字と数字の両方を含めて設定してください'
 
   # 全角（漢字・ひらがな・カタカナ）の正規表現
-  ZENKAKU_REGEX = /\A[ sterilityぁ-んァ-ヶ一-龥々ー]+\z/
+  ZENKAKU_REGEX = /\A[ぁ-んァ-ヶ一-龥々ー]+\z/
   # 全角（カタカナ）の正規表現
   KANA_REGEX = /\A[ァ-ヶー]+\z/
 
