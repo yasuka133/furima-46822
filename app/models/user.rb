@@ -4,11 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  #ニックネームが含まれている
+  # ニックネームが含まれている
   validates :nickname, presence: true
-  
-  #パスワードが半角英数字とエラーメッセージ
-  PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
+
+  # パスワードが半角英数字とエラーメッセージ
+  PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i
   validates_format_of :password, with: PASSWORD_REGEX, message: 'には英字と数字の両方を含めて設定してください'
 
   # 全角（漢字・ひらがな・カタカナ）の正規表現
@@ -25,6 +25,5 @@ class User < ApplicationRecord
     # お名前カナ(全角)のバリデーション
     validates :last_name_kana, format: { with: KANA_REGEX, message: 'は全角（カタカナ）で入力してください' }
     validates :first_name_kana, format: { with: KANA_REGEX, message: 'は全角（カタカナ）で入力してください' }
-  
   end
 end
