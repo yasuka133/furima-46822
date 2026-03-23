@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Users', type: :system do
   before do
     @user = FactoryBot.build(:user)
+    driven_by :rack_test 
   end
 
   context 'ログアウト状態のとき' do
@@ -30,6 +31,7 @@ RSpec.describe 'Users', type: :system do
       # ログインページに遷移したことを確認する
       expect(page).to have_current_path(new_user_session_path)
     end
+  end
 
     context 'ログイン状態のとき' do
       it 'トップページに「ニックネーム」と「ログアウト」ボタンが表示される' do
@@ -56,6 +58,7 @@ RSpec.describe 'Users', type: :system do
         # 新規登録とログインボタンがないことを確認
         expect(page).to have_no_content('新規登録')
         expect(page).to have_no_content('ログイン')
+
       end
 
       it 'ログアウトボタンをクリックするとログアウトができる' do
@@ -82,4 +85,3 @@ RSpec.describe 'Users', type: :system do
       end
     end
   end
-end
