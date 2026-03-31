@@ -1,4 +1,12 @@
 class Item < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :item_category,           class_name: 'Category'
+  belongs_to :item_sales_status,       class_name: 'ItemSalesStatus'
+  belongs_to :item_shipping_fee_status, class_name: 'ShippingFeeStatus'
+  belongs_to :item_prefecture,         class_name: 'Prefecture'
+  belongs_to :item_scheduled_delivery, class_name: 'ScheduledDelivery'
+
+
   # アソシエーション
   belongs_to :user
   has_one_attached :image
