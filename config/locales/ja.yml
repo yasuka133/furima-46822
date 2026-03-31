@@ -34,6 +34,7 @@ ja:
     format: "%{attribute}%{message}"
     messages:
       blank: "を入力してください"
+      required: "を入力してください"
       not_a_number: "は数値で入力してください"
 
 
