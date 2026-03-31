@@ -75,7 +75,6 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include('Password には英字と数字の両方を含めて設定してください')
       end
 
-
       # 一致確認のテスト
       it 'passwordとpassword_confirmationが不一致では登録できない' do
         @user.password = '123456'
@@ -132,7 +131,6 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include('First name kana は全角（カタカナ）で入力してください')
       end
-
 
       it 'birth_dateが空では登録できない' do
         @user.birth_date = ''
