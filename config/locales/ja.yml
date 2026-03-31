@@ -1,0 +1,37 @@
+ja:
+  activerecord:
+    attributes:
+      item:
+        image: "画像"
+        item_name: "商品名"
+        item_info: "商品の説明"
+        item_category_id: "カテゴリー"
+        item_sales_status_id: "商品の状態"
+        item_shipping_fee_status_id: "配送料の負担"
+        item_prefecture_id: "発送元の地域"
+        item_scheduled_delivery_id: "発送までの日数"
+        item_price: "販売価格"
+    errors:
+      models:
+        item:
+          attributes:
+            item_price:
+              not_a_number: "は半角数値で入力してください"
+              greater_than_or_equal_to: "は300以上の値にしてください"
+              less_than_or_equal_to: "は9,999,999以下の値にしてください"
+            # 以下の項目に other_than 用のメッセージを追加
+            item_category_id:
+              other_than: "を選択してください"
+            item_sales_status_id:
+              other_than: "を選択してください"
+            item_shipping_fee_status_id:
+              other_than: "を選択してください"
+            item_prefecture_id:
+              other_than: "を選択してください"
+            item_scheduled_delivery_id:
+              other_than: "を選択してください"
+  errors:
+    format: "%{attribute}%{message}"
+    messages:
+      blank: "を入力してください"
+      not_a_number: "は数値で入力してください"

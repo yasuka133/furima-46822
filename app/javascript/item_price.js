@@ -1,5 +1,4 @@
 window.addEventListener('turbo:load', () => {
-   console.log("JS読み込み成功");
   const priceInput = document.getElementById("item-price");
   
   if (!priceInput) return;
@@ -19,3 +18,5 @@ window.addEventListener('turbo:load', () => {
     profitDom.innerHTML = profit.toLocaleString();
   })
 });
+
+
