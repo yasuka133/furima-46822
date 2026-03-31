@@ -35,3 +35,10 @@ ja:
     messages:
       blank: "を入力してください"
       not_a_number: "は数値で入力してください"
+
+
+  devise:
+    failure:
+      unauthenticated: "ログインしてから商品を出品してください"
+      user:
+        unauthenticated: "ログインしてから商品を出品してください"
