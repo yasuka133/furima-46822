@@ -6,7 +6,6 @@ class Item < ApplicationRecord
   belongs_to :item_prefecture,         class_name: 'Prefecture'
   belongs_to :item_scheduled_delivery, class_name: 'ScheduledDelivery'
 
-
   # アソシエーション
   belongs_to :user
   has_one_attached :image
