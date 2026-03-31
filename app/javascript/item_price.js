@@ -20,8 +20,8 @@ window.addEventListener('turbo:load', () => {
 });
 
 window.addEventListener('turbo:load', priceCalc);
-
 window.addEventListener('turbo:render', priceCalc);
+
 
 
 
