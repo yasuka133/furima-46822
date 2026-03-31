@@ -4,72 +4,67 @@
 <div class="item-show">
   <div class="item-box">
     <h2 class="name">
-      <%= @item.item_name %>
+      <%= "商品名" %>
     </h2>
     <div class="item-img-content">
-       <%= image_tag @item.image, class: "item-box-img" if @item.image.attached? %>
-     
+      <%= image_tag "item-sample.png" ,class:"item-box-img" %>
       <%# 商品が売れている場合は、sold outを表示しましょう %>
-      <% if false %> 
       <div class="sold-out">
         <span>Sold Out!!</span>
       </div>
-      <% end %>
       <%# //商品が売れている場合は、sold outを表示しましょう %>
     </div>
     <div class="item-price-box">
       <span class="item-price">
-        ¥ <%= @item.item_price.toLocaleString if respond_to?(:toLocaleString) %><%= @item.item_price %>
+        ¥ 999,999,999
       </span>
       <span class="item-postage">
-        <%= @item.item_shipping_fee_status.name %>
+        <%= "配送料負担" %>
       </span>
     </div>
 
     <%# ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
-    <% if user_signed_in? %>
-     <% if current_user.id == @item.user_id %>
-     #出品者本人の場合
+
     <%= link_to "商品の編集", "#", method: :get, class: "item-red-btn" %>
     <p class="or-text">or</p>
     <%= link_to "削除", "#", data: {turbo_method: :delete}, class:"item-destroy" %>
-     <% else %>
-     #出品者以外の場合で商品が売れていない場合
+
+
+    <%# 商品が売れていない場合はこちらを表示しましょう %>
     <%= link_to "購入画面に進む", "#" ,class:"item-red-btn"%>
-     <% end %>
-     <% end %>
+    <%# //商品が売れていない場合はこちらを表示しましょう %>
 
 
     <%# //ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
 
     <div class="item-explain-box">
-      <span><%= @item.item_info %></span>
+      <span><%= "商品説明" %></span>
     </div>
     <table class="detail-table">
       <tbody>
         <tr>
           <th class="detail-item">出品者</th>
-          <td class="detail-value"><%= @item.user.nickname %></td>
+          <td class="detail-value"><%= "出品者名" %></td>
         </tr>
         <tr>
           <th class="detail-item">カテゴリー</th>
-          <td class="detail-value"><%= @item.item_category.name %></td>
+          <td class="detail-value"><%= "カテゴリー名" %></td>
         </tr>
         <tr>
           <th class="detail-item">商品の状態</th>
-          <td class="detail-value"><%= @item.item_sales_status.name %></td>
+          <td class="detail-value"><%= "商品の状態" %></td>
         </tr>
         <tr>
           <th class="detail-item">配送料の負担</th>
-          <td class="detail-value"><%= @item.item_shipping_fee_status.name %></td>
+          <td class="detail-value"><%= "発送料の負担" %></td>
         </tr>
         <tr>
           <th class="detail-item">発送元の地域</th>
-          <td class="detail-value"><%= @item.item_prefecture.name %></td>
+          <td class="detail-value"><%= "発送元の地域" %></td>
         </tr>
         <tr>
           <th class="detail-item">発送日の目安</th>
-          <td class="detail-value"><%= @item.item_scheduled_delivery.name  %></td>
+          <td class="detail-value"><%= "発送日の目安" %></td>
         </tr>
       </tbody>
     </table>
@@ -109,7 +104,7 @@
     </a>
   </div>
   <%# 詳細ページで表示されている商品のカテゴリー名を表示しましょう %>
-  <a href="#" class="another-item"><%=  @item.item_category.name %>をもっと見る</a>
+  <a href="#" class="another-item"><%= "商品のカテゴリー名" %>をもっと見る</a>
   <%# //詳細ページで表示されている商品のカテゴリー名を表示しましょう %>
 </div>
 
