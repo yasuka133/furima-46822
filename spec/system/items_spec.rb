@@ -21,15 +21,15 @@ RSpec.describe '商品情報編集', type: :system do
   end
 
   context '商品編集画面へ遷移できないとき' do
-    #it 'ログイン状態でも、自身が出品した売却済み商品の編集ページへ遷移しようとすると、トップページに遷移する' do
-      # 売却済みの状態を作る（Orderを作成）
-      #@order = FactoryBot.create(:order, item: @item)
-      #sign_in(@item.user)
-      # 直接編集ページへアクセス
-      #visit edit_item_path(@item)
-      # トップページに押し戻されることを確認
-      #expect(current_path).to eq(root_path)
-    #end
+    # it 'ログイン状態でも、自身が出品した売却済み商品の編集ページへ遷移しようとすると、トップページに遷移する' do
+    # 売却済みの状態を作る（Orderを作成）
+    # @order = FactoryBot.create(:order, item: @item)
+    # sign_in(@item.user)
+    # 直接編集ページへアクセス
+    # visit edit_item_path(@item)
+    # トップページに押し戻されることを確認
+    # expect(current_path).to eq(root_path)
+    # end
 
     it 'ログイン状態でも、自身が出品していない商品の編集ページへ遷移しようとすると、トップページに遷移する' do
       # 別ユーザーでログイン
@@ -39,7 +39,7 @@ RSpec.describe '商品情報編集', type: :system do
       # トップページに押し戻されることを確認
       expect(current_path).to eq(root_path)
     end
-    
+
     it '内容に不備がある（空欄など）場合は編集に失敗し、編集画面に戻る' do
       sign_in(@item.user)
       visit edit_item_path(@item)
@@ -51,7 +51,5 @@ RSpec.describe '商品情報編集', type: :system do
       # エラーメッセージが表示されていることを確認（shared/_error_messages がある場合）
       expect(page).to have_content('商品名を入力してください')
     end
-
-
   end
 end
