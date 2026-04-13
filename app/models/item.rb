@@ -37,4 +37,11 @@ class Item < ApplicationRecord
     validates :item_prefecture_id
     validates :item_scheduled_delivery_id
   end
+
+  # 画像が空であることを許さない設定
+  validates :image, presence: true, unless: :was_attached?
+
+  def was_attached?
+    image.attached?
+  end
 end
