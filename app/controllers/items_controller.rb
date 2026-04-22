@@ -36,6 +36,16 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+  if current_user.id == @item.user_id
+    if @item.destroy
+      redirect_to root_path, notice: "商品を削除しました"
+    else
+      redirect_to item_path(@item), alert: "取引中のため削除できません"
+    end
+   else
+    # 本人でない場合はそのままトップへ
+    redirect_to root_path
+   end
   end
 
   private
