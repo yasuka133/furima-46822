@@ -3,7 +3,6 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :contributor_confirmation, only: [:edit, :update, :destroy]
 
-
   def index
     @items = Item.all.order('created_at DESC')
   end
@@ -36,16 +35,16 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-  if current_user.id == @item.user_id
-    if @item.destroy
-      redirect_to root_path, notice: "商品を削除しました"
+    if current_user.id == @item.user_id
+      if @item.destroy
+        redirect_to root_path, notice: '商品を削除しました'
+      else
+        redirect_to item_path(@item), alert: '取引中のため削除できません'
+      end
     else
-      redirect_to item_path(@item), alert: "取引中のため削除できません"
+      # 本人でない場合はそのままトップへ
+      redirect_to root_path
     end
-   else
-    # 本人でない場合はそのままトップへ
-    redirect_to root_path
-   end
   end
 
   private
