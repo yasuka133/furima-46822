@@ -28,8 +28,11 @@
 
     <%# ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
     <% if user_signed_in? %>
+    <%# 商品が売れていない場合のみ、各種ボタンを表示する %>
+    <% unless @item.order.present? %>
     <% if current_user.id == @item.user_id %>
-
+    
+    <%# 出品者本人：編集と削除 %>
     <%= link_to "商品の編集", edit_item_path(@item), method: :get, class: "item-red-btn" %>
     <p class="or-text">or</p>
     <%= button_to "削除", item_path(@item), method: :delete, class: "item-destroy" %>
@@ -37,6 +40,7 @@
     <%# 商品が売れていない場合はこちらを表示しましょう %>
     <% else %>
     <%= link_to "購入画面に進む", item_orders_path(@item) ,class:"item-red-btn"%>
+    <% end %>
     <% end %>
     <% end %>
 

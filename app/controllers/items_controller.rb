@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :contributor_confirmation, only: [:edit, :update, :destroy]
+  before_action :check_sold_out, only: [:edit, :update]
 
   def index
     @items = Item.all.order('created_at DESC')
@@ -66,4 +67,11 @@ class ItemsController < ApplicationController
     # ログインしているユーザーと出品者が一致しない場合は、トップページへ戻す
     redirect_to root_path unless current_user.id == @item.user_id
   end
+  
+  def check_sold_out
+    if @item.order.present?
+      redirect_to root_path
+    end
+  end
+
 end
