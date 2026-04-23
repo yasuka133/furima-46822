@@ -14,7 +14,12 @@ class OrdersController < ApplicationController
     @order_address = OrderAddress.new(order_params)
     
     if @order_address.valid?
-      # ここでPay.jpなどの決済処理を行う（後ほど実装）
+      Payjp.api_key = "sk_test_e35a50da2b7e3aa9c4c52674" # テスト用秘密鍵
+    Payjp::Charge.create(
+      amount: @item.item_price,    # 商品の値段
+      card: order_params[:token],  # JavaScriptから届いたトークン
+      currency: 'jpy'              # 日本円
+    )
       
       @order_address.save # Formオブジェクトのsaveメソッドを実行
       redirect_to root_path, notice: "購入が完了しました"
@@ -31,7 +36,13 @@ class OrdersController < ApplicationController
 
   def order_params
     # フォームから送られてくる情報を許可（user_idとitem_idも合体させる）
-    params.require(:order_address).permit(:postal_code, :prefecture_id, :city, :house_number, :building, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+    params.require(:order_address).permit(
+     :postal_code, :prefecture_id, :city, :house_number, :building, :phone_number
+  ).merge(
+    user_id: current_user.id, 
+    item_id: params[:item_id], 
+    token: params[:token]
+  )
   end
 
   def prevent_self_purchase
