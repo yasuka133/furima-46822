@@ -33,6 +33,18 @@ ja:
         item_prefecture_id: "発送元の地域"
         item_scheduled_delivery_id: "発送までの日数"
         item_price: "販売価格"
+      
+      user: 
+        nickname: ニックネーム
+        email: Eメール
+        password: パスワード
+        password_confirmation: パスワード（確認用）
+        last_name: お名前(全角)
+        first_name: お名前(全角)
+        last_name_kana: お名前カナ(全角)
+        first_name_kana: お名前カナ(全角)
+        birth_date: 生年月日
+
     errors:
       models:
         item:
@@ -52,6 +64,14 @@ ja:
             item_scheduled_delivery_id:
               other_than: "を選択してください"
 
+        user: 
+          attributes:
+            email:
+              taken: "はすでに存在します"
+              invalid: "は不正な値です"
+            password:
+              confirmation: "とパスワードの入力が一致しません"
+
   # --- 共通メッセージ ---
   errors:
     format: "%{attribute}%{message}"
@@ -59,6 +79,8 @@ ja:
       blank: "を入力してください"
       required: "を入力してください"
       not_a_number: "は数値で入力してください"
+      too_short: "は6文字以上で入力してください"
+      confirmation: "と%{attribute}の入力が一致しません"
 
   # --- Devise (ログインメッセージ) ---
   devise:

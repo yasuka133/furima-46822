@@ -19,6 +19,33 @@ RSpec.describe OrderAddress, type: :model do
     end
 
     context '内容に問題がある場合' do
+      # エラーハンドリングのテスト
+      it 'tokenが空だと保存できないこと' do
+        @order_address.token = nil
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("クレジットカード情報を入力してください")
+      end
+
+      # 配送先のバリデーション（以前実装したものをここに並べる）
+      it 'postal_codeが空だと保存できないこと' do
+        @order_address.postal_code = ''
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("郵便番号を入力してください")
+      end
+
+      # ユーザー・商品情報の紐付けテスト
+      it 'user_idが空だと保存できないこと' do
+        @order_address.user_id = nil
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Userを入力してください")
+      end
+      it 'item_idが空だと保存できないこと' do
+        @order_address.item_id = nil
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Itemを入力してください")
+      end
+
+
       # 郵便番号のテスト
       it 'postal_codeが空だと保存できないこと' do
         @order_address.postal_code = ''
