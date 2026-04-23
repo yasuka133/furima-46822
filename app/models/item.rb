@@ -9,8 +9,8 @@ class Item < ApplicationRecord
   # アソシエーション
   belongs_to :user
   has_one_attached :image
-  # has_one :order, dependent: :destroy
-  # before_destroy :check_not_sold
+  has_one :order, dependent: :destroy
+  before_destroy :check_not_sold
 
   # 全ての項目が空では保存できないようにするバリデーション
   with_options presence: true do
@@ -46,13 +46,13 @@ class Item < ApplicationRecord
   private
 
   # 【追記】売却済みの場合は削除をキャンセルするメソッド
-  # def check_not_sold
+   def check_not_sold
   # orderが存在する（売却済み）場合は削除させない
-  # if order.present?
-  # errors.add(:base, "売却済みの商品は削除できません")
-  # throw(:abort)
-  # end
-  # end
+   if order.present?
+   errors.add(:base, "売却済みの商品は削除できません")
+   throw(:abort)
+   end
+  end
 
   def was_attached?
     image.attached?
