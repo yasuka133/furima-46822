@@ -70,7 +70,8 @@ RSpec.configure do |config|
   end
 
   config.before(:each) do
-    DatabaseCleaner.strategy = :transaction
+    # type: :system の時だけ、ブラウザからデータが見えるように「truncation」を使う
+    DatabaseCleaner.strategy = :truncation
   end
 
   config.before(:each) do
@@ -80,4 +81,5 @@ RSpec.configure do |config|
   config.after(:each) do
     DatabaseCleaner.clean
   end
+  
 end

@@ -64,13 +64,13 @@ class ItemsController < ApplicationController
   end
 
   def contributor_confirmation
-    # ログインしているユーザーと出品者が一致しない場合は、トップページへ戻す
-    redirect_to root_path unless current_user.id == @item.user_id
+    puts "current_user: #{current_user.id}, item_user: #{@item.user_id}"
+    redirect_to item_path(@item) unless current_user.id == @item.user_id
   end
   
   def check_sold_out
     if @item.order.present?
-      redirect_to root_path
+      redirect_to item_path(@item)
     end
   end
 

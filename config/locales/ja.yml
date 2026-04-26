@@ -86,3 +86,13 @@ ja:
   devise:
     failure:
       unauthenticated: "ログインしてください"
+      not_found_in_database: "メールアドレスまたはパスワードが違います。"
+      invalid: "メールアドレスまたはパスワードが違います。"
+      last_attempt: "パスワードをあと1回間違えるとアカウントがロックされます。"
+
+  # --- Order用 ---
+  date:
+    order:
+      - year
+      - month
+      - day
