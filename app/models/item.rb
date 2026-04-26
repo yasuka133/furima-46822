@@ -46,12 +46,12 @@ class Item < ApplicationRecord
   private
 
   # 【追記】売却済みの場合は削除をキャンセルするメソッド
-   def check_not_sold
-  # orderが存在する（売却済み）場合は削除させない
-   if order.present?
-   errors.add(:base, "売却済みの商品は削除できません")
-   throw(:abort)
-   end
+  def check_not_sold
+    # orderが存在する（売却済み）場合は削除させない
+    return unless order.present?
+
+    errors.add(:base, '売却済みの商品は削除できません')
+    throw(:abort)
   end
 
   def was_attached?

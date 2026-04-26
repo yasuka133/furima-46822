@@ -67,11 +67,10 @@ class ItemsController < ApplicationController
     puts "current_user: #{current_user.id}, item_user: #{@item.user_id}"
     redirect_to item_path(@item) unless current_user.id == @item.user_id
   end
-  
-  def check_sold_out
-    if @item.order.present?
-      redirect_to item_path(@item)
-    end
-  end
 
+  def check_sold_out
+    return unless @item.order.present?
+
+    redirect_to item_path(@item)
+  end
 end
