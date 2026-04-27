@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :contributor_confirmation, only: [:edit, :update, :destroy]
+  before_action :check_sold_out, only: [:edit, :update]
 
   def index
     @items = Item.all.order('created_at DESC')
@@ -63,7 +64,13 @@ class ItemsController < ApplicationController
   end
 
   def contributor_confirmation
-    # ログインしているユーザーと出品者が一致しない場合は、トップページへ戻す
-    redirect_to root_path unless current_user.id == @item.user_id
+    puts "current_user: #{current_user.id}, item_user: #{@item.user_id}"
+    redirect_to item_path(@item) unless current_user.id == @item.user_id
+  end
+
+  def check_sold_out
+    return unless @item.order.present?
+
+    redirect_to item_path(@item)
   end
 end

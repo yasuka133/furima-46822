@@ -1,4 +1,4 @@
-window.addEventListener('turbo:load', () => {
+const priceCalc = () => {
   const priceInput = document.getElementById("item-price");
   
   if (!priceInput) return;
@@ -16,8 +16,8 @@ window.addEventListener('turbo:load', () => {
     // 販売利益の計算
     const profit = inputValue - tax;
     profitDom.innerHTML = profit.toLocaleString();
-  })
-});
+  });
+};
 
 window.addEventListener('turbo:load', priceCalc);
 window.addEventListener('turbo:render', priceCalc);

@@ -1,4 +1,26 @@
 ja:
+  # --- OrderAddress用 ---
+  activemodel:
+    attributes:
+      order_address:
+        postal_code: 郵便番号
+        prefecture_id: 都道府県
+        city: 市区町村
+        house_number: 番地
+        phone_number: 電話番号
+        token: クレジットカード情報
+    errors:
+      models:
+        order_address:
+          attributes:
+            postal_code:
+              invalid: "は不正な値です。ハイフン(-)を含めてください"
+            prefecture_id:
+              other_than: "を選択してください"
+            phone_number:
+              invalid: "は不正な値です"
+
+  # --- Item用 ---
   activerecord:
     attributes:
       item:
@@ -11,6 +33,18 @@ ja:
         item_prefecture_id: "発送元の地域"
         item_scheduled_delivery_id: "発送までの日数"
         item_price: "販売価格"
+      
+      user: 
+        nickname: ニックネーム
+        email: Eメール
+        password: パスワード
+        password_confirmation: パスワード（確認用）
+        last_name: お名前(全角)
+        first_name: お名前(全角)
+        last_name_kana: お名前カナ(全角)
+        first_name_kana: お名前カナ(全角)
+        birth_date: 生年月日
+
     errors:
       models:
         item:
@@ -19,7 +53,6 @@ ja:
               not_a_number: "は半角数値で入力してください"
               greater_than_or_equal_to: "は300以上の値にしてください"
               less_than_or_equal_to: "は9,999,999以下の値にしてください"
-            # 以下の項目に other_than 用のメッセージを追加
             item_category_id:
               other_than: "を選択してください"
             item_sales_status_id:
@@ -30,16 +63,36 @@ ja:
               other_than: "を選択してください"
             item_scheduled_delivery_id:
               other_than: "を選択してください"
+
+        user: 
+          attributes:
+            email:
+              taken: "はすでに存在します"
+              invalid: "は不正な値です"
+            password:
+              confirmation: "とパスワードの入力が一致しません"
+
+  # --- 共通メッセージ ---
   errors:
     format: "%{attribute}%{message}"
     messages:
       blank: "を入力してください"
       required: "を入力してください"
       not_a_number: "は数値で入力してください"
+      too_short: "は6文字以上で入力してください"
+      confirmation: "と%{attribute}の入力が一致しません"
 
-
+  # --- Devise (ログインメッセージ) ---
   devise:
     failure:
-      unauthenticated: "ログインしてから商品を出品してください"
-      user:
-        unauthenticated: "ログインしてから商品を出品してください"
+      unauthenticated: "ログインしてください"
+      not_found_in_database: "メールアドレスまたはパスワードが違います。"
+      invalid: "メールアドレスまたはパスワードが違います。"
+      last_attempt: "パスワードをあと1回間違えるとアカウントがロックされます。"
+
+  # --- Order用 ---
+  date:
+    order:
+      - year
+      - month
+      - day
