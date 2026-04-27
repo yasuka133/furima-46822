@@ -5,6 +5,7 @@ class OrdersController < ApplicationController
 
   def index
     # 決済用フォームに渡す空のオブジェクトを作成
+    gon.public_key = ENV['PAYJP_PUBLIC_KEY']
     @order_address = OrderAddress.new
   end
 
@@ -23,6 +24,7 @@ class OrdersController < ApplicationController
       @order_address.save # Formオブジェクトのsaveメソッドを実行
       redirect_to root_path, notice: '購入が完了しました'
     else
+      gon.public_key = ENV['PAYJP_PUBLIC_KEY']
       render :index, status: :unprocessable_entity
     end
   end
